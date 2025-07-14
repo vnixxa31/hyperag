@@ -5,7 +5,9 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
 
-# Load API keys from environment variables for security
+# from llama_index.llms.openrouter import OpenRouter
+
+# openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Configure global settings
