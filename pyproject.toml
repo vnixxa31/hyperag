@@ -6,24 +6,23 @@ requires-python = ">=3.13"
 dependencies = [
     "langgraph",
     "llama-index",
-    "chromadb"
-
-    "python-dotenv",      # For managing environment variables
+    "chromadb",
+    "python-dotenv",
+    "llama-index-vector-stores-chroma>=0.4.2",
+    "openai>=1.95.1",
+    "llama-index-embeddings-openai>=0.3.1",
 ]
 
 [project.optional-dependencies]
 dev = [
-    # Code Quality & Formatting
     "ruff",
     #"mypy",
 
-    # Testing
     #"pytest",
     #"pytest-asyncio",
 
-    # Notebooks
-    "jupyter",
-    "ipykernel",
+    #"jupyter",
+    #"ipykernel",
 ]
 
 [tool.ruff]

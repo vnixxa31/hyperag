@@ -52,3 +52,5 @@ env/
 .mypy_cache
 
 docs/
+
+data/
