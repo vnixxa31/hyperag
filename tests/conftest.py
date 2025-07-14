@@ -11,7 +11,7 @@ from agent.core.config import settings
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_test_environment():
-    print("\n--- (Setting up Test Environment: Fixture running) ---")
+    print("\n--- SETUP ---")
 
     # TODO: Don't hardcode values
     LlamaIndexSettings.llm = OpenAI(
@@ -26,4 +26,4 @@ def setup_test_environment():
     yield
 
     # TODO: Add actual teardown logic
-    print("\n--- (Tearing down Test Environment: Fixture finished) ---")
+    print("\n--- TEARDOWN ---")
