@@ -1,0 +1,34 @@
+[project]
+name = "hyperag"
+version = "0.1.0"
+description = "An advanced agentic RAG architecture."
+requires-python = ">=3.13"
+dependencies = [
+    "langgraph",
+    "llama-index",
+    "chromadb"
+
+    "python-dotenv",      # For managing environment variables
+]
+
+[project.optional-dependencies]
+dev = [
+    # Code Quality & Formatting
+    "ruff",
+    #"mypy",
+
+    # Testing
+    #"pytest",
+    #"pytest-asyncio",
+
+    # Notebooks
+    "jupyter",
+    "ipykernel",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "A", "C4"]
