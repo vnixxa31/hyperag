@@ -7,10 +7,6 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     openrouter_api_key: str = ""
     app_env: str = "development"
-    default_llm_model_name: str = "gpt-4o"
-    default_embedding_model_name: str = "text-embedding-3-small"
-    default_chunk_size: int = 1024
-    default_chunk_overlap: int = 256
     chroma_persist_path: str = "./data/chroma_db"
 
     class Config:

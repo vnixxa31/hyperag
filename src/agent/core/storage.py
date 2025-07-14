@@ -1,21 +1,19 @@
 import os
 
 import chromadb
-from llama_index.core import StorageContext
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
+from agent.core.config import settings
 
-def get_storage_context(collection_name: str = "default_collection") -> StorageContext:
+
+def get_vector_store(collection_name: str = "default_collection") -> ChromaVectorStore:
     """
-    Sets up ChromaDB collection and returns a StorageContext.
+    Sets up a ChromaDB collection
     """
-    # Testing solution, not final
-    persist_directory = os.getenv("CHROMA_PERSIST_PATH", "./data/chroma_db")
-    db = chromadb.PersistentClient(path=persist_directory)
+    db = chromadb.PersistentClient(path=settings.chroma_persist_path)
 
     chroma_collection = db.get_or_create_collection(name=collection_name)
 
     vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-    return storage_context
+    return vector_store
