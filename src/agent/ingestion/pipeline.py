@@ -11,8 +11,8 @@ from agent.core.config import settings
 
 def create_ingestion_pipeline() -> IngestionPipeline:
     """
-    Creates and returns an simple ingestion pipeline using Title and QA extrators
-    This pipeline is used to process and transform text data before storage.
+    Returns simplified ingestion pipeline with token text splitter,
+    title extractor, and questions answered extractor.
     """
     extraction_llm = OpenAI(model="gpt-4.1-nano", api_key=settings.openai_api_key)
 

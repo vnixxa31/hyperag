@@ -7,10 +7,9 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def get_storage_context(collection_name: str = "default_collection") -> StorageContext:
     """
-    Initializes and returns the storage context for the application.
-    This function encapsulates the logic for setting up the vector store.
+    Sets up ChromaDB collection and returns a StorageContext.
     """
-    # Use temporary persistent storage solution for ChromaDB
+    # Testing solution, not final
     persist_directory = os.getenv("CHROMA_PERSIST_PATH", "./data/chroma_db")
     db = chromadb.PersistentClient(path=persist_directory)
 
