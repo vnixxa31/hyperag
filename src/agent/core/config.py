@@ -1,19 +1,36 @@
-import os
+from pathlib import Path
 
-from llama_index.core import Settings
-from llama_index.core.node_parser import SentenceSplitter
-from llama_index.embeddings.openai import OpenAIEmbedding
-from llama_index.llms.openai import OpenAI
+from pydantic_settings import BaseSettings
 
-# from llama_index.llms.openrouter import OpenRouter
 
-# openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
-openai_api_key = os.getenv("OPENAI_API_KEY")
+class Settings(BaseSettings):
+    openai_api_key: str = ""
+    openrouter_api_key: str = ""
+    app_env: str = "development"
+    default_llm_model_name: str = "gpt-4o"
+    default_embedding_model_name: str = "text-embedding-3-small"
+    default_chunk_size: int = 1024
+    default_chunk_overlap: int = 256
+    chroma_persist_path: str = "./data/chroma_db"
 
-# Configure global settings
-Settings.llm = OpenAI(model="gpt-4o", api_key=openai_api_key)
-Settings.embed_model = OpenAIEmbedding(
-    model="text-embedding-3-small", api_key=openai_api_key
-)
-Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
-Settings.chunk_size = 512
+    class Config:
+        # Find the project root by looking for pyproject.toml
+        _current_file = Path(__file__).resolve()
+        _project_root = None
+        for parent in _current_file.parents:
+            if (parent / "pyproject.toml").exists():
+                _project_root = parent
+                break
+
+        if _project_root is None:
+            # Fallback: assume we're in src/agent/core and go up 3 levels
+            _project_root = _current_file.parent.parent.parent
+
+        env_file = _project_root / ".env"
+        env_file_encoding = "utf-8"
+        extra = (
+            "ignore"  # Ignore extra fields from .env that aren't defined in the model
+        )
+
+
+settings = Settings()
