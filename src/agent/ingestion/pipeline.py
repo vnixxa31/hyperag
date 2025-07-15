@@ -46,8 +46,8 @@ def create_qa_extractor(llm: OpenAI, questions: int) -> QuestionsAnsweredExtract
 
 
 @flow(name="LlamaIndex Ingestion Pipeline", log_prints=True)
-def create_ingestion_pipeline_flow(
-    model: str = "gpt-4.1-nano",
+def create_ingestion_pipeline(
+    model: str,
     chunk_size: int = 1024,
     chunk_overlap: int = 256,
     title_extractor_nodes: int = 5,

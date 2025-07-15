@@ -1,6 +1,16 @@
 from pathlib import Path
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+# agent-generated
+def _find_project_root() -> Path:
+    current_file = Path(__file__).resolve()
+    for parent in current_file.parents:
+        if (parent / "pyproject.toml").exists():
+            return parent
+
+    return current_file.parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -8,25 +18,13 @@ class Settings(BaseSettings):
     openrouter_api_key: str = ""
     app_env: str = "development"
     chroma_persist_path: str = "./data/chroma_db"
+    test_model_name: str = "gpt-4.1-nano"
 
-    class Config:
-        # Find the project root by looking for pyproject.toml
-        _current_file = Path(__file__).resolve()
-        _project_root = None
-        for parent in _current_file.parents:
-            if (parent / "pyproject.toml").exists():
-                _project_root = parent
-                break
-
-        if _project_root is None:
-            # Fallback: assume we're in src/agent/core and go up 3 levels
-            _project_root = _current_file.parent.parent.parent
-
-        env_file = _project_root / ".env"
-        env_file_encoding = "utf-8"
-        extra = (
-            "ignore"  # Ignore extra fields from .env that aren't defined in the model
-        )
+    model_config = SettingsConfigDict(
+        env_file=_find_project_root() / ".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 
 settings = Settings()
