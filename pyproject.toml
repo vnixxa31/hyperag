@@ -28,7 +28,7 @@ target-version = "py313"
 select = ["E", "F", "W", "I", "UP", "B", "A", "C4"]
 
 [[tool.mypy.overrides]]
-module = ["agent.*"]
+module = ["agent.*", "ingest.*"]
 ignore_missing_imports = true
 
 [dependency-groups]
