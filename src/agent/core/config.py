@@ -18,7 +18,12 @@ class Settings(BaseSettings):
     openrouter_api_key: str = ""
     app_env: str = "development"
     chroma_persist_path: str = "./data/chroma_db"
-    test_model_name: str = "gpt-4.1-nano"
+    collection_name: str = "default_collection"
+    default_openai_model: str = "gpt-4o"
+    default_chunk_size: int = 1024
+    default_chunk_overlap: int = 256
+    default_title_extractor_nodes: int = 5
+    default_qa_extractor_questions: int = 3
 
     model_config = SettingsConfigDict(
         env_file=_find_project_root() / ".env",

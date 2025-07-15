@@ -11,7 +11,7 @@ from agent.core.config import settings
     retry_delay_seconds=10,
 )
 def get_vector_store(
-    collection_name: str = "default_collection",
+    collection_name: str = settings.collection_name,
 ) -> ChromaVectorStore:
     """
     Sets up ChromaDB vector store using a persistent client and gets or
