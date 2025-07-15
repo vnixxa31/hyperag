@@ -6,7 +6,7 @@ from llama_index.core.ingestion import IngestionPipeline
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.llms.openai import OpenAI
 
-from ingest.storage import get_vector_store
+from core.storage import get_vector_store
 
 
 def create_metadata_pipeline() -> IngestionPipeline:
