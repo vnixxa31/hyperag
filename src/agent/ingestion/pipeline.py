@@ -8,17 +8,15 @@ from llama_index.core.vector_stores.types import BasePydanticVectorStore
 from llama_index.llms.openai import OpenAI
 from prefect import task
 
-from agent.core.config import settings
-
 
 @task
 def create_metadata_pipeline(
     llm: OpenAI,
     vector_store: BasePydanticVectorStore,
-    chunk_size: int = settings.default_chunk_size,
-    chunk_overlap: int = settings.default_chunk_overlap,
-    title_extractor_nodes: int = settings.default_title_extractor_nodes,
-    qa_extractor_questions: int = settings.default_qa_extractor_questions,
+    chunk_size: int,
+    chunk_overlap: int,
+    title_extractor_nodes: int,
+    qa_extractor_questions: int,
 ) -> IngestionPipeline:
     """
     Creates a simple ingestion pipeline with token text splitter,
