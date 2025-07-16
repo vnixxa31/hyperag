@@ -4,6 +4,7 @@ from hyperag.core.config import settings
 
 
 def jina_embed():
+    print(settings.jina_api_key)
     embedding = JinaEmbedding(
         api_key=settings.jina_api_key,
         model=settings.jina_embedding_model,

@@ -31,7 +31,7 @@ target-version = "py313"
 select = ["E", "F", "W", "I", "UP", "B", "A", "C4"]
 
 [[tool.mypy.overrides]]
-module = ["core.*", "ingest.*"]
+module = ["hyperag.*"]
 ignore_missing_imports = true
 
 [dependency-groups]

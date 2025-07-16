@@ -1,14 +1,11 @@
 from pathlib import Path
 
-from dotenv import load_dotenv
 from llama_index.core import SimpleDirectoryReader
 
-from ingest.pipeline import create_metadata_pipeline
-
-load_dotenv()
+from hyperag.ingest.pipeline import create_metadata_pipeline
 
 
-async def main():
+def main():
     # snippet from the internet
     script_dir = Path(__file__).resolve().parent
     project_root = script_dir
@@ -16,15 +13,13 @@ async def main():
         project_root = project_root.parent
         if project_root == project_root.parent:
             raise FileNotFoundError("Project root (pyproject.toml) not found.")
-    data_dir = project_root / "data" / "red_hat_build_of_keycloak"
+    data_dir = project_root / "data" / "paul_graham"
 
     documents = SimpleDirectoryReader(str(data_dir)).load_data()
 
     pipeline = create_metadata_pipeline()
-    nodes = await pipeline.arun(documents=documents)
+    pipeline.run(documents=documents, show_progress=True)
 
 
 if __name__ == "__main__":
-    import asyncio
-
-    asyncio.run(main())
+    main()
