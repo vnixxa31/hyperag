@@ -15,6 +15,9 @@ dependencies = [
     "llama-index-llms-openai>=0.4.7",
     "pydantic-settings>=2.10.1",
     "prefect>=3.4.8",
+    "llama-index-embeddings-huggingface>=0.5.5",
+    "llama-index-embeddings-jinaai>=0.4.0",
+    "requests>=2.32.4",
 ]
 
 [tool.setuptools.packages.find]
